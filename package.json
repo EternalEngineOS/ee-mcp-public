@@ -1,0 +1,52 @@
+{
+  "name": "ee-mcp-public",
+  "version": "0.1.0",
+  "description": "Read-only Model Context Protocol server for the EternalEngine public API — runs on your machine with your own API key. No write tools. No auth bypass. No local file or shell access.",
+  "keywords": ["mcp", "model-context-protocol", "eternalengine", "ai-agent", "api"],
+  "license": "MIT",
+  "author": "EternalEngine LLC",
+  "homepage": "https://eternalengineos.io/developers",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EternalEngineOS/ee-mcp-public.git"
+  },
+  "bugs": {
+    "url": "https://github.com/EternalEngineOS/.github/issues"
+  },
+  "private": false,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "ee-mcp-public": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "THREAT-MODEL.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "codegen": "node scripts/codegen.mjs",
+    "build": "npm run codegen && tsc",
+    "clean": "rm -rf dist src/generated-tools.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.4",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
