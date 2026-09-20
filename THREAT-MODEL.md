@@ -105,4 +105,7 @@ tooling), never shipped in `dist/`.
 ## Reporting an issue
 
 Found a way for this package to do something this document says it cannot? That is a real
-finding — open an issue in the EternalEngine repository, or email `support@eternalengineos.io`.
+finding — open an issue in the [EternalEngineOS/.github](https://github.com/EternalEngineOS/.github/issues)
+repository, or email `info@eternalengineos.io` (the one address EternalEngine publishes for
+every inbound purpose, including security — see
+[`SECURITY.md`](https://github.com/EternalEngineOS/.github/blob/main/SECURITY.md)).

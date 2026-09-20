@@ -6,7 +6,12 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ## [Unreleased]
-- Publishing to npm is in progress. Until then, install from source — see README.md.
+- Not yet published to npm; publishing is a manual step reserved for the EternalEngine team,
+  not an automated part of this package's CI. Install from source until then — see README.md.
+- README: replaced the invented `security@eternalengineos.io` contact with
+  `info@eternalengineos.io`, the one address EternalEngine actually publishes for every inbound
+  purpose (matches `docs/growth/BUSINESS-PROFILE.md` in the main repository and the live
+  `/security` page on eternalengineos.io).
 
 ## [0.1.0] - 2026-09-15
 

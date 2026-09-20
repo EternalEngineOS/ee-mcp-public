@@ -38,8 +38,10 @@ are per-app:
 
 ## Install & run
 
-**Publishing to npm is in progress; until then, run from source.** These exact commands are
-verified against this repository:
+**Not yet published to npm** — publishing is a manual, deliberate step reserved for the
+EternalEngine team (see `docs/growth/PUBLIC-API-AND-MCP.md` in the main repository), not
+something this package's CI does automatically. Until it is published, run from source. These
+exact commands are verified against this repository:
 
 ```bash
 git clone https://github.com/EternalEngineOS/ee-mcp-public.git
@@ -112,6 +114,8 @@ Every tool corresponds to exactly one `GET` operation in the public OpenAPI spec
 `operationId`s (e.g. `listMessages`, `getAnalyticsOverview`, `getConnectBalance`). This package
 ships **43 tools**, counted directly from the generated tool list
 (`src/generated-tools.ts`, produced by `scripts/codegen.mjs` from `spec/openapi.public.json`).
+<!-- Count regenerated with: grep -c '^  {$' src/generated-tools.ts -- 43 as of 2026-09-20.
+     Re-run after every `pnpm codegen`; this comment states the command, not a fact to trust blindly. -->
 
 Each tool call:
 1. Validates its input against a Zod schema derived from the spec's parameters.
@@ -149,7 +153,8 @@ ever disagree.
 Read [`THREAT-MODEL.md`](./THREAT-MODEL.md) first. Found a way for this package to do something
 that document says it cannot? That is a real finding — open an issue at
 [EternalEngineOS/.github](https://github.com/EternalEngineOS/.github/issues) or email
-`security@eternalengineos.io`.
+`info@eternalengineos.io` (the one address EternalEngine publishes for every inbound purpose,
+including security reports — see [`SECURITY.md`](https://github.com/EternalEngineOS/.github/blob/main/SECURITY.md)).
 
 ## Support
 
