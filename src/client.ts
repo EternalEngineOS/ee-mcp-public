@@ -37,7 +37,9 @@ export async function getJson(
   config: ClientConfig,
   fetchImpl: FetchLike = fetch,
 ): Promise<unknown> {
-  const url = new URL(path, config.apiBase.endsWith('/') ? config.apiBase : config.apiBase + '/');
+  // Tool paths are absolute ('/postframe/...'); resolved as-is, new URL() would replace the
+  // base's '/api/v1' path with them. Strip the leading slash so the path is appended to the base.
+  const url = new URL(path.replace(/^\/+/, ''), config.apiBase.endsWith('/') ? config.apiBase : config.apiBase + '/');
   let response: Response;
   try {
     response = await fetchImpl(url.toString(), {

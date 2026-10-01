@@ -8,6 +8,22 @@ function fakeFetch(response: Partial<Response> & { json?: () => Promise<unknown>
 }
 
 describe('getJson — happy path', () => {
+  // Paths in the generated tool table are absolute ('/postframe/...'). new URL() would resolve them
+  // against the ORIGIN and drop the '/api/v1' base, sending every call to a route the gateway
+  // does not serve. Pin the full URL, for a base with and without a trailing slash.
+  it.each(['https://app.eternalengineos.io/api/v1', 'https://app.eternalengineos.io/api/v1/'])(
+    'keeps the base path when the tool path is absolute (base %s)',
+    async (apiBase) => {
+      let sawUrl = '';
+      const fetchImpl = vi.fn(async (url: unknown) => {
+        sawUrl = String(url);
+        return { ok: true, status: 200, headers: new Headers({ 'content-type': 'application/json' }), json: async () => ({}) } as unknown as Response;
+      }) as unknown as FetchLike;
+      await getJson('/postframe/emails?limit=5', { ...CONFIG, apiBase }, fetchImpl);
+      expect(sawUrl).toBe('https://app.eternalengineos.io/api/v1/postframe/emails?limit=5');
+    },
+  );
+
   it('sends the Authorization header and returns parsed JSON on 200', async () => {
     const fetchImpl = vi.fn(async (_url: unknown, init?: RequestInit) => {
       const headers = (init?.headers ?? {}) as Record<string, string>;
